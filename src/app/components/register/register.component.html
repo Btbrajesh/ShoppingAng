@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Slide Navbar</title>
+	<!-- <link rel="stylesheet" type="text/css" href="slide navbar .css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet"> -->
+</head>
+
+<body>
+	<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+		<div class="signup">
+			<form [formGroup]="userForm" (ngSubmit)="saveUser()">
+				<label for="chk" aria-hidden="true">Sign up</label>
+				<input type="text" name="firstName" placeholder="First Name" formControlName="firstName">
+				<div *ngIf="userForm.get('firstName')?.invalid" class="alert mb-0 p-0">
+					<div
+						*ngIf="userForm.get('firstName')?.hasError('required') && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)">
+						<p class="text-danger"><small>First name is required.</small>
+						</p>
+					</div>
+				</div>
+				<input type="text" name="txt" placeholder="Last Name" formControlName="lastName">
+				<div *ngIf="userForm.get('lastName')?.invalid" class="alert mb-0 p-0">
+					<div
+						*ngIf="userForm.get('lastName')?.hasError('required') && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)">
+						<p class="text-danger"><small>Last name is required.</small>
+						</p>
+					</div>
+				</div>
+				<input type="text" name="txt" placeholder="User name" formControlName="userName">
+				<div *ngIf="userForm.get('userName')?.invalid" class="alert mb-0 p-0">
+					<div
+						*ngIf="userForm.get('userName')?.hasError('required') && (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)">
+						<p class="text-danger"><small>User name is required.</small>
+						</p>
+					</div>
+				</div>
+				<input type="email" name="email" placeholder="Email" formControlName="email">
+				<div *ngIf="userForm.get('email')?.invalid" class="alert mb-0 p-0">
+					<div
+						*ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+						<p class="text-danger"><small>Email is required.</small>
+						</p>
+					</div>
+					<div
+						*ngIf="userForm.get('email')?.hasError('email') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+						<p class="text-danger"><small>Please enter valid email</small>
+						</p>
+					</div>
+				</div>
+				<input type="password" name="pswd" placeholder="Password" formControlName="password">
+				<div *ngIf="userForm.get('password')?.invalid" class="alert mb-0 p-0">
+					<div
+						*ngIf="userForm.get('password')?.hasError('required') && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
+						<p class="text-danger"><small>Password is required.</small>
+						</p>
+					</div>
+				</div>
+				<input type="password" name="confirmPassword" placeholder="Confirm Password"
+					formControlName="confirmPassword">
+					<div *ngIf="userForm.get('confirmPassword')?.invalid" class="alert mb-0 p-0">
+						<div
+							*ngIf="userForm.get('confirmPassword')?.hasError('required') && (userForm.get('confirmPassword')?.dirty || userForm.get('confirmPassword')?.touched)">
+							<p class="text-danger"><small>Confirm Password is required.</small>
+							</p>
+						</div>
+					</div>
+				<div *ngIf="isPasswordMatch" class="alert mb-0 p-0">
+					<p>Password and confirm password must match</p>
+				</div>
+				<select name="gender" formControlName="gender">
+					<option value="">Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="other">other</option>
+				</select>
+				<div *ngIf="userForm.get('gender')?.invalid" class="alert mb-0 p-0">
+					<div
+						*ngIf="userForm.get('gender')?.hasError('required') && (userForm.get('gender')?.dirty || userForm.get('gender')?.touched)">
+						<p class="text-danger"><small>Please select gender</small>
+						</p>
+					</div>
+				</div>
+				<button type="submit">Sign up</button>
+			</form>
+		</div>
+
+		<div class="login">
+			<app-login></app-login>
+		</div>
+	</div>
+</body>
+
+</html>

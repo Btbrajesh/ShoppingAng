@@ -1,0 +1,117 @@
+<div class="pagination pagination-lg">
+    <table id="customers">
+        <thead>
+            <tr>
+                <th> CatId</th>
+                <th> Category Name</th>
+                <th>Action &nbsp;&nbsp;<button class="btn btn-primary" data-toggle="modal" data-target="#AddModalCenter" >Add</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let categories of categoryList">
+                <td>{{categories.catId}}</td>
+                <td>{{categories.categoryName}}</td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditModalCenter"
+                    (click)="getCategoryById(categories.catId)">
+                    Edit
+                </button> &nbsp;
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DetailsModalCenter"
+                    (click)="getCategoryById(categories.catId)">
+                    Details
+                </button>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Button trigger modal -->
+
+
+<!--Category Detail Modal -->
+<div class="modal fade" id="DetailsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Category Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> CatID : {{categoryDetail.catId}} </p>
+                <p>Category Name : {{categoryDetail.categoryName}}</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal fade" id="EditModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditModalCenter">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="categoryData" (ngSubmit)="editCategoryById()">
+                    <label for="recipient-name" class="col-form-label">Category Name</label>
+                    <input type="text" class="form-control" id="recipient-name" formControlName="categoryName">
+                    <div *ngIf="categoryData.get('categoryName')?.invalid" class="alert mb-0 p-0">
+                        <div
+                            *ngIf="categoryData.get('categoryName')?.hasError('required') && (categoryData.get('categoryName')?.dirty || categoryData.get('categoryName')?.touched)">
+                            <p class="text-danger"><small>Category name is required.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnClose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Add Category Model -->
+<div class="modal fade" id="AddModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditModalCenter">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="categoryData" (ngSubmit)="addCategory()">
+                    <label for="recipient-name" class="col-form-label">Category Name</label>
+                    <input type="text" class="form-control" id="recipient-name" formControlName="categoryName">
+                    <div *ngIf="categoryData.get('categoryName')?.invalid" class="alert mb-0 p-0">
+                        <div
+                            *ngIf="categoryData.get('categoryName')?.hasError('required') && (categoryData.get('categoryName')?.dirty || categoryData.get('categoryName')?.touched)">
+                            <p class="text-danger"><small>Category name is required.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnClose" class="btn btn-secondary" data-dismiss="modal" (click)="categoryData.reset()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -17,8 +17,9 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
     color: white;
+    
   }
   a{
       
@@ -28,6 +29,10 @@
       padding-bottom: 12px;
       margin-right: 60px;
       text-align: center;
-      color: rgb(5, 20, 232); 
-      
+      color: rgb(5, 20, 232);      
   }
+  h5{
+    color: #302b63;
+   }
+ 
+  

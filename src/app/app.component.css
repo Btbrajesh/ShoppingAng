@@ -23,7 +23,7 @@
 .header {
   width: 100%;
   height: 100%;
-  background: #35302d;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 
 .logo {
@@ -55,6 +55,7 @@
 }
 .main-nav li {
   border-bottom: solid 1px #3c3735;
+ 
 }
 .main-nav a {
   padding: 1.1em 0;
@@ -108,9 +109,18 @@
   width: 100%;
   height: 100%;
   border-right: solid 5px #df4500;
-  background: #3c3735;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
   transition: 0.35s ease left;
 }
 .list-hover-slide a.is-current:before, .list-hover-slide a:hover:before {
   left: 0;
+}
+.row{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.col-9{
+  padding: 0px;
+  margin-left: 315px;
 }

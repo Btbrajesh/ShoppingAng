@@ -67,7 +67,7 @@ input{
 	justify-content: center;
 	display: flex;
 	margin: 20px auto;
-	padding: 10px;
+	padding: 22px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
@@ -102,6 +102,7 @@ button:hover{
 .loginlabel{
 	color: #573b8a;
 	transform: scale(.6);
+	width: 65%;
 }
 
 #chk:checked ~ .login{

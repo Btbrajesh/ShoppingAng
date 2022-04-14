@@ -1,1 +1,124 @@
-<p>sub-category works!</p>
+<div class="pagination pagination-lg">
+    <table id="customers">
+        <thead>
+            <tr>
+                <th> SubCatId</th>
+                <th>SubCategory Name</th>
+                <th> Category Id</th>
+                <th>Action &nbsp;&nbsp;<button class="btn btn-primary" data-toggle="modal" data-target="#AddModalCenter" >Add</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subCategories of subCategoryList"> 
+                <td>{{subCategories.subCatId}}</td>
+                <td>{{subCategories.subCategoryName}}</td>
+                <td>{{subCategories.catId}}</td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditModalCenter"
+                    (click)="getSubCategoryById(subCategories.subCatId)">
+                    Edit
+                </button> &nbsp;
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DetailsModalCenter"
+                    (click)="getSubCategoryById(subCategories.subCatId)">
+                    Details
+                </button> 
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Button trigger modal -->
+
+
+<!--SubCategory Detail Modal -->
+<div class="modal fade" id="DetailsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">SubCategory Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> SubCatID : {{subCategoryDetail.subCatId}} </p>
+                <p>SubCategory Name : {{subCategoryDetail.subCategoryName}}</p>
+                <p>Category Id : {{subCategoryDetail.catId}}</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!-- Edit SubCategory Modal -->
+ <div class="modal fade" id="EditModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditModalCenter">Update SubCategory</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="subCategoryData" (ngSubmit)="editSubCategoryById()">
+                    <label for="recipient-name" class="col-form-label">SubCategory Name</label>
+                    <input type="text" class="form-control" id="recipient-name" formControlName="subCategoryName">
+                    <div *ngIf="subCategoryData.get('subCategoryName')?.invalid" class="alert mb-0 p-0">
+                        <div
+                            *ngIf="subCategoryData.get('subCategoryName')?.hasError('required') && (subCategoryData.get('subCategoryName')?.dirty || subCategoryData.get('subCategoryName')?.touched)">
+                            <p class="text-danger"><small>SubCategory name is required.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnClose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div> 
+
+<!-- Add SubCategory Model -->
+<div class="modal fade" id="AddModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditModalCenter">Add New SubCategory</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="subCategoryData" (ngSubmit)="AddSubCategory()">
+                    <label for="recipient-name" class="col-form-label">Select Category Name</label>
+                    <select name="catId" formControlName="catId" class="col-form-label">
+                        <option value="{{category.catId}}" *ngFor="let category of categoryList" class="form-control" id="recipient-name">{{category.categoryName}}</option>
+                    </select>
+                    <label for="recipient-name" class="col-form-label">SubCategory Name</label>
+                    <input type="text" class="form-control" id="recipient-name" formControlName="subCategoryName">  
+                    <div *ngIf="subCategoryData.get('subCategoryName')?.invalid" class="alert mb-0 p-0">
+                        <div
+                            *ngIf="subCategoryData.get('subCategoryName')?.hasError('required') && (subCategoryData.get('subCategoryName')?.dirty || subCategoryData.get('subCategoryName')?.touched)">
+                            <p class="text-danger"><small>SubCategory name is required.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnClose" class="btn btn-secondary" data-dismiss="modal" (click)="subCategoryData.reset()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div> 
